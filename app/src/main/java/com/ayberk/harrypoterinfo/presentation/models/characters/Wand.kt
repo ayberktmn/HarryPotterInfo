@@ -1,4 +1,4 @@
-package com.ayberk.harrypoterinfo.presentation.models
+package com.ayberk.harrypoterinfo.presentation.models.characters
 
 data class Wand(
     val core: String,
