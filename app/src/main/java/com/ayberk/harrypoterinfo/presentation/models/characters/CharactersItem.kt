@@ -1,24 +1,36 @@
 package com.ayberk.harrypoterinfo.presentation.models.characters
 
+import com.google.gson.annotations.SerializedName
+
 data class CharactersItem(
-    val actor: String,
-    val alive: Boolean,
-    val alternate_actors: List<String>,
-    val alternate_names: List<String>,
-    val ancestry: String,
-    val dateOfBirth: String,
-    val eyeColour: String,
-    val gender: String,
-    val hairColour: String,
-    val hogwartsStaff: Boolean,
-    val hogwartsStudent: Boolean,
-    val house: String,
-    val id: String,
-    val image: String,
-    val name: String,
-    val patronus: String,
-    val species: String,
-    val wand: Wand,
-    val wizard: Boolean,
-    val yearOfBirth: Int
+    @SerializedName("actor")
+    val actor: String?,
+    @SerializedName("alive")
+    val alive: Boolean?,
+    @SerializedName("alternate_names")
+    val alternateNames: List<String?>?,
+    @SerializedName("ancestry")
+    val ancestry: String?,
+    @SerializedName("gender")
+    val gender: String?,
+    @SerializedName("hogwartsStaff")
+    val hogwartsStaff: Boolean?,
+    @SerializedName("hogwartsStudent")
+    val hogwartsStudent: Boolean?,
+    @SerializedName("house")
+    val house: String?,
+    @SerializedName("id")
+    val id: String?,
+    @SerializedName("image")
+    val image: String?,
+    @SerializedName("name")
+    val name: String?,
+    @SerializedName("patronus")
+    val patronus: String?,
+    @SerializedName("species")
+    val species: String?,
+    @SerializedName("wand")
+    val wand: Wand?,
+    @SerializedName("wizard")
+    val wizard: Boolean?,
 )

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ayberk.harrypoterinfo.common.Resource
 import com.ayberk.harrypoterinfo.di.retrofit.RetrofitRepository
-import com.ayberk.harrypoterinfo.presentation.models.characters.Characters
+import com.ayberk.harrypoterinfo.presentation.models.characters.CharactersItem
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,20 +18,21 @@ class CharactersViewModel @Inject constructor(private val repository: RetrofitRe
     private val _charactersState = MutableLiveData<CharactersState>()
     val charactersState: LiveData<CharactersState> get() = _charactersState
 
+
     fun getCharacters() {
         viewModelScope.launch {
-            when (val response = repository.characters()) {
+            when (val response = repository.getCharacters()) {
                 is Resource.Success -> {
                     _charactersState.value = CharactersState(
                         isLoading = false,
-                        charactersList = response.data
+                        charactersList = response.data as? List<CharactersItem>
                     )
                     println("data success")
                 }
                 is Resource.Fail -> {
                     _charactersState.value = CharactersState(
                         isLoading = false,
-                        errorMessage = response.message
+                        errorMessage = response.message,
                     )
                     println("data Fail")
                 }
@@ -46,10 +47,10 @@ class CharactersViewModel @Inject constructor(private val repository: RetrofitRe
             }
         }
     }
-
-    data class CharactersState(
-        val isLoading: Boolean = false,
-        val charactersList: List<Characters>? = null,
-        val errorMessage: String? = null
-    )
 }
+
+data class CharactersState(
+    val isLoading: Boolean = false,
+    val charactersList: List<CharactersItem>? = null,
+    val errorMessage: String? = null
+)
