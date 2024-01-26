@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">HarryPoterInfo</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textgender">Gender :</string>
+    <string name="dateBirth">BirthDay :</string>
+    <string name="species">Species :</string>
+    <string name="wizard">Wizard :</string>
 </resources>

@@ -18,7 +18,6 @@ class CharactersViewModel @Inject constructor(private val repository: RetrofitRe
     private val _charactersState = MutableLiveData<CharactersState>()
     val charactersState: LiveData<CharactersState> get() = _charactersState
 
-
     fun getCharacters() {
         viewModelScope.launch {
             when (val response = repository.getCharacters()) {

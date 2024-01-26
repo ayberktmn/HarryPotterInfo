@@ -1,7 +1,10 @@
 package com.ayberk.harrypoterinfo.presentation.models.characters
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CharactersItem(
     @SerializedName("actor")
     val actor: String?,
@@ -29,8 +32,7 @@ data class CharactersItem(
     val patronus: String?,
     @SerializedName("species")
     val species: String?,
-    @SerializedName("wand")
-    val wand: Wand?,
+    val dateOfBirth : String?,
     @SerializedName("wizard")
     val wizard: Boolean?,
-)
+) : Parcelable
