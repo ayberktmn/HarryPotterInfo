@@ -75,4 +75,8 @@ dependencies {
 
     implementation("androidx.hilt:hilt-navigation-fragment:1.1.0")
 
+    implementation ("com.airbnb.android:lottie:6.0.1")
+
+    implementation ("com.github.sparrow007:carouselrecyclerview:1.2.6")
+
 }

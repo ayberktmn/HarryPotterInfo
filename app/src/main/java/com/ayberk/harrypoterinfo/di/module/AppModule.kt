@@ -1,5 +1,6 @@
 package com.ayberk.harrypoterinfo.di.module
 
+import com.ayberk.harrypoterinfo.common.Constans.BASE_URL
 import com.ayberk.harrypoterinfo.di.retrofit.RetrofitServiceInstance
 import dagger.Module
 import dagger.Provides
@@ -12,8 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-
-    var BASE_URL = "https://hp-api.onrender.com/api/"
 
     @Provides
     @Singleton

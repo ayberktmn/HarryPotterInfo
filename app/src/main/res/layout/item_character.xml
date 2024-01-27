@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="5dp"
+            android:fontFamily="@font/metal_mania_regular"
             android:gravity="center"
             android:text="TextView"
             android:textAlignment="center"

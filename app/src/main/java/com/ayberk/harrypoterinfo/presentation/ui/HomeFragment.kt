@@ -65,28 +65,27 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView(charactersList: List<CharactersItem>) {
         binding.rcylerCharacters.apply {
             setHasFixedSize(true)
-            val layoutManager =
-                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int {
-                    return 1 // Her öğe tek bir sütun kaplasın
-                }
+          //  val layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+         //   layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+         //       override fun getSpanSize(position: Int): Int {
+           //         return 1 // Her öğe tek bir sütun kaplasın
+             //   }
             }
-            this.layoutManager = layoutManager
+           // this.layoutManager = layoutManager
 
-            addItemDecoration(object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    outRect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    val position = parent.getChildAdapterPosition(view)
-                    val spanCount = layoutManager.spanCount
-                    val column = position % spanCount
+            // addItemDecoration(object : RecyclerView.ItemDecoration() {
+        //     override fun getItemOffsets(
+        //         outRect: Rect,
+        //         view: View,
+        //          parent: RecyclerView,
+        //           state: RecyclerView.State
+        //       ) {
+        //           val position = parent.getChildAdapterPosition(view)
+        //            val spanCount = layoutManager.spanCount
+        //           val column = position % spanCount
 
-                }
-            })
+        //       }
+        //   })
             charactersAdapter = CharactersAdapter(
                 onDetailsClick = {
                     val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it)
@@ -96,6 +95,11 @@ class HomeFragment : Fragment() {
                 charactersList
             )
             binding.rcylerCharacters.adapter = charactersAdapter
+            binding.rcylerCharacters.apply {
+                set3DItem(true)
+                setAlpha(true)
+                setInfinite(true)
+            }
         }
     }
 
@@ -104,12 +108,12 @@ class HomeFragment : Fragment() {
         return (dp * scale + 0.5f).toInt()
     }
 
-    private fun Int.dpToPx(): Int {
-        return requireContext().dpToPx(this)
-    }
+//   private fun Int.dpToPx(): Int {
+        //     return requireContext().dpToPx(this)
+//   }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-}
+// override fun onDestroyView() {
+//      super.onDestroyView()
+//     _binding = null
+//   }
+//}

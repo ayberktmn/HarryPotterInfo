@@ -21,5 +21,4 @@ class RetrofitRepository @Inject constructor(
             Resource.Error(e)
         }
     }
-
 }
