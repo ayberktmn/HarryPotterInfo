@@ -5,4 +5,8 @@
     <string name="dateBirth">BirthDay :</string>
     <string name="species">Species :</string>
     <string name="wizard">Wizard :</string>
+    <string name="actor">Actor :</string>
+
+    <string name="login">Sign In</string>
+    <string name="signup">Sign Up</string>
 </resources>
