@@ -1,7 +1,6 @@
 package com.ayberk.harrypoterinfo.presentation.ui
 
-import android.content.Context
-import android.graphics.Rect
+import SpellsAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +10,12 @@ import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ayberk.harrypoterinfo.databinding.FragmentHomeBinding
 import com.ayberk.harrypoterinfo.presentation.adapter.CharactersAdapter
 import com.ayberk.harrypoterinfo.presentation.models.characters.CharactersItem
+import com.ayberk.harrypoterinfo.presentation.models.spell.Attributes
 import com.ayberk.harrypoterinfo.presentation.viewmodel.CharactersViewModel
+import com.ayberk.harrypoterinfo.presentation.viewmodel.SpellsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,13 +24,17 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var isBackPressed = false
+
     private val viewModel: CharactersViewModel by viewModels()
     private lateinit var charactersAdapter: CharactersAdapter
+
+    private val viewModelSpells: SpellsViewModel by viewModels()
+    private lateinit var spellsAdapter: SpellsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,6 +45,7 @@ class HomeFragment : Fragment() {
             isBackPressed = true
         }
         viewModel.getCharacters()
+        viewModelSpells.getSpells()
         initObserver()
     }
 
@@ -54,66 +58,70 @@ class HomeFragment : Fragment() {
                     println("charactersList boş veya null.")
                 }
             }
-
             state.errorMessage?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                showErrorToast(it)
                 println("Recycler error")
             }
         }
-    }
 
-    private fun setupRecyclerView(charactersList: List<CharactersItem>) {
-        binding.rcylerCharacters.apply {
-            setHasFixedSize(true)
-          //  val layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-         //   layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-         //       override fun getSpanSize(position: Int): Int {
-           //         return 1 // Her öğe tek bir sütun kaplasın
-             //   }
+        viewModelSpells.spellsState.observe(viewLifecycleOwner) { state ->
+            state.spellsList.let { spellsList ->
+                if (spellsList.isNotEmpty()) {
+                    val attributesList = spellsList.map { it.attributes }
+                    setupRecyclerSpells(spellsList = attributesList)
+                    println("Spells list size: ${attributesList.size}")
+                } else {
+                    println("spellsList is empty.")
+                }
             }
-           // this.layoutManager = layoutManager
-
-            // addItemDecoration(object : RecyclerView.ItemDecoration() {
-        //     override fun getItemOffsets(
-        //         outRect: Rect,
-        //         view: View,
-        //          parent: RecyclerView,
-        //           state: RecyclerView.State
-        //       ) {
-        //           val position = parent.getChildAdapterPosition(view)
-        //            val spanCount = layoutManager.spanCount
-        //           val column = position % spanCount
-
-        //       }
-        //   })
-            charactersAdapter = CharactersAdapter(
-                onDetailsClick = {
-                    val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it)
-                    println("gönderilen: ${it}")
-                    findNavController().navigate(action)
-                },
-                charactersList
-            )
-            binding.rcylerCharacters.adapter = charactersAdapter
-            binding.rcylerCharacters.apply {
-                set3DItem(true)
-                setAlpha(true)
-                setInfinite(true)
+            state.errorMessage?.let {
+                showErrorToast(it)
+                println("Spells Recycler error: $it")
             }
         }
     }
 
-    private fun Context.dpToPx(dp: Int): Int {
-        val scale = resources.displayMetrics.density
-        return (dp * scale + 0.5f).toInt()
+    private fun showErrorToast(errorMessage: String) {
+        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
     }
 
-//   private fun Int.dpToPx(): Int {
-        //     return requireContext().dpToPx(this)
-//   }
+    private fun setupRecyclerSpells(spellsList: List<Attributes>) {
+        spellsAdapter = SpellsAdapter(
+            onDetailsClick = { /* Handle item click if needed */ },
+        )
 
-// override fun onDestroyView() {
-//      super.onDestroyView()
-//     _binding = null
-//   }
-//}
+        binding.rcylerSpells.apply {
+            setHasFixedSize(true)
+            adapter = spellsAdapter
+            set3DItem(true)
+            setAlpha(true)
+            setInfinite(true)
+        }
+
+        spellsAdapter.setSpellsList(spellsList)
+    }
+
+    private fun setupRecyclerView(charactersList: List<CharactersItem>) {
+        charactersAdapter = CharactersAdapter(
+            onDetailsClick = {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it)
+                println("gönderilen: $it")
+                findNavController().navigate(action)
+            },
+            charactersList
+        )
+
+        binding.rcylerCharacters.apply {
+            setHasFixedSize(true)
+            adapter = charactersAdapter
+            set3DItem(true)
+            setAlpha(true)
+            setInfinite(true)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

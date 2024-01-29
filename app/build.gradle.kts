@@ -79,4 +79,10 @@ dependencies {
 
     implementation ("com.github.sparrow007:carouselrecyclerview:1.2.6")
 
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+
+
+
+
 }

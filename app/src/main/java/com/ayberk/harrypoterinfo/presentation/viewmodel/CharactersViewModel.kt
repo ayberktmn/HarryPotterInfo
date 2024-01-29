@@ -24,7 +24,7 @@ class CharactersViewModel @Inject constructor(private val repository: RetrofitRe
                 is Resource.Success -> {
                     _charactersState.value = CharactersState(
                         isLoading = false,
-                        charactersList = response.data as? List<CharactersItem>
+                        charactersList = response.data
                     )
                     println("data success")
                 }

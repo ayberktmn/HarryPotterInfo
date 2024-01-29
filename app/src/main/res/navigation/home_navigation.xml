@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
     </fragment>
 
     <fragment
@@ -24,4 +27,9 @@
             android:name="id"
             app:argType="com.ayberk.harrypoterinfo.presentation.models.characters.CharactersItem" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.ayberk.harrypoterinfo.presentation.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 </navigation>

@@ -7,21 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.HomeFragment">
 
-
-    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-        android:id="@+id/rcylerCharacters"
-        android:layout_width="406dp"
-        android:layout_height="781dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_character" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
@@ -32,5 +17,31 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+        android:id="@+id/rcylerCharacters"
+        android:layout_width="412dp"
+        android:layout_height="237dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:itemCount="1"
+        tools:listitem="@layout/item_character" />
+
+    <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+        android:id="@+id/rcylerSpells"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="44dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcylerCharacters"
+        tools:itemCount="1"
+        tools:listitem="@layout/item_spells" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
