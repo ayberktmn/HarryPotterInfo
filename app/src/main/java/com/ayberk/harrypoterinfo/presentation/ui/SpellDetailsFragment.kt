@@ -34,10 +34,29 @@ class SpellDetailsFragment : Fragment() {
 
         with(binding){
 
-            txtspell.text = detailsSpell.name
-            txteffect.text = detailsSpell.effect
-            txtspellname.text = detailsSpell.name
-            txtspellight.text = detailsSpell.light
+            val name = detailsSpell.name
+            val effect = detailsSpell.effect
+            val light = detailsSpell.light
+
+            if (name != null) {
+                txtspell.text = name
+                txtspellname.text = name
+            }else{
+                txtspell.text = "-"
+                txtspellname.text = "-"
+            }
+
+            if (effect != null) {
+                txteffect.text = effect
+            } else{
+                txteffect.text = "-"
+            }
+
+            if (light != null) {
+                txtspellight.text = light
+            } else{
+                txtspellight.text = "-"
+            }
 
             if (detailsSpell.image != null && detailsSpell.image.isNotEmpty()) {
                 Glide.with(imgSpell)
