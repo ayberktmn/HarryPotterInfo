@@ -7,6 +7,12 @@
     <string name="wizard">Wizard :</string>
     <string name="actor">Actor :</string>
 
+    //spell details
+    <string name="name">Name :</string>
+    <string name="effect">Effect :</string>
+    <string name="light">Light :</string>
+    <string name="wiki">Wiki :</string>
+
     <string name="login">Sign In</string>
     <string name="signup">Sign Up</string>
 </resources>

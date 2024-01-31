@@ -58,7 +58,7 @@ class SpellsAdapter(
         }
     }
 
-    fun setSpellsList(newList: List<Attributes>?) {
+    fun setSpellsList(newList: List<Attributes>) {
         spellsList = newList
         notifyDataSetChanged()
     }

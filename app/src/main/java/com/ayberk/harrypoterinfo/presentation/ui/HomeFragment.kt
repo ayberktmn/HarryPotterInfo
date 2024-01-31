@@ -1,6 +1,7 @@
 package com.ayberk.harrypoterinfo.presentation.ui
 
 import SpellsAdapter
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -85,9 +86,14 @@ class HomeFragment : Fragment() {
         Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun setupRecyclerSpells(spellsList: List<Attributes>) {
         spellsAdapter = SpellsAdapter(
-            onDetailsClick = { /* Handle item click if needed */ },
+            onDetailsClick = {
+                             val action = HomeFragmentDirections.actionHomeFragmentToSpellDetailsFragment(it)
+                                        findNavController().navigate(action)
+                                        println("gönderilen spell list: ${it}")
+            },
         )
 
         binding.rcylerSpells.apply {

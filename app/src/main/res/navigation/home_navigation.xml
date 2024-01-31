@@ -14,8 +14,8 @@
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+            android:id="@+id/action_homeFragment_to_spellDetailsFragment"
+            app:destination="@id/spellDetailsFragment" />
     </fragment>
 
     <fragment
@@ -28,8 +28,13 @@
             app:argType="com.ayberk.harrypoterinfo.presentation.models.characters.CharactersItem" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment2"
-        android:name="com.ayberk.harrypoterinfo.presentation.ui.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:id="@+id/spellDetailsFragment"
+        android:name="com.ayberk.harrypoterinfo.presentation.ui.SpellDetailsFragment"
+        android:label="fragment_spell_details"
+        tools:layout="@layout/fragment_spell_details" >
+
+        <argument
+            android:name="spellid"
+            app:argType="com.ayberk.harrypoterinfo.presentation.models.spell.Attributes" />
+    </fragment>
 </navigation>
